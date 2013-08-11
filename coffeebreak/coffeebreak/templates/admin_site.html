@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block menu %}
+    {% for menu_dict in menu %}
+        {% for menu_key,menu_val in menu_dict.items %}
+            <li><a href="http://{{base_site}}/{{menu_val}}/">{{menu_key|safe|escape}}</a></li>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
+
+{% block menu_phone %}
+    {% for menu_dict in menu %}
+        {% for menu_key,menu_val in menu_dict.items %}
+            <li><a href="http://{{base_site}}/{{menu_val}}/">{{menu_key|safe|escape}}</a></li>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+      <h4 class="lead">Admin - Configuration</h4>
+   </div>
+   <table class="row table table-striped">
+   <thead>
+     <th>Admin Model</th>
+     <th></th>
+   </thead>
+   <tbody>
+     {% for admin_model in Models %}
+       <tr>
+        <td>
+          <p>{{admin_model|safe|escape|upper}}</p>
+        </td>
+        <td>
+           <a href="{{admin_model|safe|escape}}/" class="small button secondary radius"> Add</a>
+        </td>
+       </tr>
+     {% endfor %}
+   </tbody>
+   </table>
+{% endblock %}
+
+{% block footer %}
+  <div class="row"></br>
+     <p class="#">{{footer|safe|escape}} </p><hr>
+  </div>
+{% endblock %}
+
+
+

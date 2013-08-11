@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block menu %}
+    {% for menu_dict in menu %}
+        {% for menu_key,menu_val in menu_dict.items %}
+          <li class="{{status|get_item:menu_key}}"><a href="{{menu_val}}"><i class="{{icons|get_item:menu_key}}"></i>{{menu_key|safe|escape}}</a></li>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
+
+{% block menu_phone %}
+    {% for menu_dict in menu %}
+        {% for menu_key,menu_val in menu_dict.items %}
+          <li class="{{status|get_item:menu_key}}"><a href="{{menu_val}}"><i class="{{icons|get_item:menu_key}}"></i>{{menu_key|safe|escape}}</a></li>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
+
+
+{% block content %}
+  {% if form.errors %}
+   <div class="row">
+     <div data-alert class="twelve columns alert-box secondary radius">
+       {% for key,error in form.errors.items %}
+         <a href="#" class="close">&times;</a>
+         <div class="five columns center"><p>Error in <strong>{{key|safe|escape}}</strong> field {{error|safe|escape}}</p></div>
+       {% endfor %}
+     </div>
+   </div>
+  {% endif %}
+
+  <div class="row">
+  <form action="." method="post">
+    <fieldset>
+      <legend><h4>Page Configuration</h4></legend>
+
+      <div class="row">
+        <div class="five columns">
+        <label >Reference Page <small>required</small></label>
+          {{form.my_menu}}
+        </div>
+      </div></br>
+
+      <div class="row">
+        <div class="seven columns">
+        <label>Topic Header <small>required</small></label>
+          {{form.Topic_Header}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="eight columns">
+        <label>Topic Detail <small>required</small></label>
+          {{form.Topic_Detail}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="four columns">
+        <label>Disqus status <small>required only if you are integrating disqus to your posts.</small></label>
+          {{form.disqus_status}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="twelve columns">
+        <label>In Depth <small>use this after briefing your page details in Topic_Detail section</small></label>
+          {{form.Topic_In_Depth}}
+        </div>
+      </div>
+
+      <div class="row right">
+        <button class="small success button radius">Save</button>
+      </div>
+    </fieldset>
+  </form>
+  </div>
+{% endblock %}

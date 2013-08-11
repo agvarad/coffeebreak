@@ -1,0 +1,25 @@
+application: coffeebreak
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+libraries:
+- name: django
+  version: "1.4"
+
+builtins:
+- django_wsgi: on
+
+handlers:
+- url: /(.*/?.*)/(.*)/(.*\.(css|js|gif|png|jpg|ico|woff|ttf))
+  static_files: static/\2/\3
+  upload: static/(.*\.(js|css|gif|png|jpg|ico|woff|ttf))
+  expiration: '0'
+
+- url: /robots.txt
+  static_files: media/robots.txt
+  upload: media/robots.txt
+
+
+

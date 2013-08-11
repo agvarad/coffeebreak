@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block menu %}
+    {% for menu_dict in menu %}
+        {% for menu_key,menu_val in menu_dict.items %}
+            <li class="{{status|get_item:menu_key}}"><a href="{{menu_val}}"><i class="{{icons|get_item:menu_key}}"></i>{{menu_key|safe|escape}}</a></li>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
+
+{% block content %}
+  {% if form.errors %}
+   <div class="row">
+     <div data-alert class="twelve columns alert-box secondary radius">
+       {% for key,error in form.errors.items %}
+         <a href="#" class="close">&times;</a>
+         <div class="five columns center"><p>Error in <strong>{{key|safe|escape}}</strong> field {{error|safe|escape}}</p></div>
+       {% endfor %} 
+     </div>
+   </div>
+  {% endif %} 
+
+   {% for data in Pages %}
+     {% for key,value in data.items %}
+       <p>{{key|safe|escape}}</p>
+       {% if value == "True" %}
+         <a class="right" href="{{Ref_pointer|get_item:key}}"><strong>Continue Reading</strong></a>
+       {% endif %}
+     {% endfor %}
+   {% endfor %}
+
+  <!-- PAGINATION -->
+  {% if Pages.object_list and Pages.paginator.num_pages > 1 %}
+    <div class="pagination-centered">
+      <p><span class="step-links">
+        {% if Pages.has_previous %}
+            <a href= "?page={{ Pages.previous_page_number }}">&laquo</a>
+        {% endif %}
+                  
+        <span class="current">
+            <strong><em>&nbsp;Page {{ Pages.number }} of {{ Pages.paginator.num_pages }}</em></strong>
+        </span>
+
+        {% if Pages.has_next %}
+            <a href="?page={{ Pages.next_page_number }}">&raquo</a>
+        {% endif %}
+     </span></p>
+   </div>
+  {% endif %}
+{% endblock %}

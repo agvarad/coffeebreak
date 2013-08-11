@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="stylesheets/foundation.min.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/accessibility_foundicons.css">
+    <link rel="shortcut icon" href="images/coffee.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="javascripts/modernizr.foundation.js"></script>
+    <title>{{Title|safe|escape}}</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav class="top-bar">
+        <ul class="title-area">
+          <li class="name"><h1><a href="{{BASE_SITE}}">{{header|safe|escape}}</a></h1></li>
+          <li class="toggle-topbar menu-icon"><a href="#"></a></li>
+        </ul>
+
+        <section class="top-bar-section">
+          <ul class="left">
+          {% block menu %}
+          {% endblock %}
+          </ul>
+        </section>
+      </nav>
+
+      <div class="row">
+        <div class="twelve columns">
+          {% if offset == 'home' %}
+            <div class="hide-for-small">
+              <h2>
+                 <a class="" href="images/coffee.png"><img src="images/coffee.png" width="64" height="64"></a>
+                 <a href="{{BASE_SITE}}">{{header|safe|escape}}</a>
+              </h2>
+            </div> 
+            <h5>{{Slogan|safe|escape}}</h5>
+          {% else %}
+            <h2><a href="{{BASE_SITE}}">{{header|safe|escape}}</a></h2>
+            <h5>{{Slogan|safe|escape}}</h5>
+          {% endif %}
+          <hr />
+        </div>
+      </div>
+
+      <!--[if lte IE 8]>
+        <div class="row">
+          <div data-alert class="twelve columns alert-box secondary radius">
+            <a href="#" class="close">&times;</a>
+            <p>This site does not support IE 8, Please choose a higher version for compatibility.</p>
+          </div>
+        </div>
+      <![endif]-->
+   
+      {% if bread_crumbs %}
+        {% if BASE_SITE %}
+          <div class="row">
+            <ul class="breadcrumbs">
+              {% for breadcrumb in bread_crumbs  %}
+                {% if forloop.last %}
+                  {% for bc_key,bc_val in breadcrumb.items %}
+                    <li class="current"><a href="{{BASE_SITE}}{{bc_val}}">{{bc_key}}</a></li>
+                  {% endfor %}
+                {% else %}
+                  {% for bc_key,bc_val in breadcrumb.items %}
+                    <li><a href="{{BASE_SITE}}{{bc_val}}">{{bc_key}}</a></li>
+                  {% endfor %}
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      {% endif %}
+
+      <div class="row">
+        <!-- Contents needs to be paced here -->
+          {% block content %}
+          {% endblock %}
+      </div>
+      <div class="push"></div>
+    </div>
+
+    <div class="panel">
+      <div class="footer">
+        <div class="row">
+         {{footer|safe|escape}}
+        </div>
+      </div>
+    </div>
+
+    <script src="javascripts/jquery.js"></script>
+    <script src="javascripts/foundation.min.js"></script>
+    <script src="javascripts/app.js"></script>
+  </body>
+</html>

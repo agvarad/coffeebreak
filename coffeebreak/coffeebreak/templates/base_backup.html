@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.2//EN" "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile12.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <!-- Basic Page Needs ================================================== -->
+
+    <meta charset="utf-8" />
+    <meta name="description" content="Twitter Bootstrap with Fonts Awesome on Google App Engine">
+    <meta name="author" content="Varadarajan A Govindamohan">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!--[if lt IE 9]>
+      <script type="text/javascript src="js/html5.js"></script>
+    <![endif]-->
+
+     <!-- CSS ================================================== -->
+
+      <link rel="stylesheet" href="css/style.css" />
+      <link href="css/foundation.css" rel="stylesheet" />
+      <link rel="stylesheet" href="css/bootstrap.min.css" />
+      <link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+      <link rel="stylesheet" href="css/font-awesome.css" />
+
+      <!--[if IE 7]>
+        <link rel="stylesheet" href="css/font-awesome-ie7.css">
+      <![endif]-->
+
+      <title>{{Title}}</title>
+  </head>
+  <body>
+     <div id="wrap">
+       <div class="content-fluid">
+
+         <!-- Navigation Menu Tabets/Desktops -->
+         <div class="hidden-phone">
+           <div class="navbar navbar-static-top navbar-inverse hidden-print">
+             <div class="navbar-inner">
+               <div class="container">
+                 <span class="navbar-brand" href="{{base_site}}">{{header|safe|escape}}</span>
+                 <div class="nav-collapse">
+                   <ul class="nav navbar-nav">
+                     {% block menu  %}
+                     {% endblock %}
+                   </ul>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+
+       </div>
+
+       <!-- Navigation Menu Mobiles -->
+       <div class="hidden-desktop hidden-tablet">
+         <div class="navbar navbar-fixed-top navbar-inverse">
+           <div class="navbar-inner">
+             <span class="navbar-brand">{{header|safe|escape}}</span>
+             <div class="container">
+               <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+               </a>
+               <div class="nav-collapse">
+                 <ul class="nav">
+                     {% block menu_phone  %}
+                     {% endblock %}
+                 </ul>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+
+       <!-- Banner for Tablets/Desktops -->
+       <div class="hidden-phone">
+         <div class="jumbotron jumbotron-index hidden-print">
+            <div class="container">
+                {% block page_banner %}
+                <span class="offset1 span4">
+                   <h2 class="page-header"><i class="icon-rocket"></i><strong>  {{header|escape|safe}}</strong>
+                   <h4><em>{{Slogan|safe|escape}}</em></h4>
+                </span>
+                {% endblock  %}
+            </div>
+         </div>
+       </div>
+
+       <!--[if lte IE 8]>
+          <div class="container alert alert-block">
+             <button type="button" class="close" data-dismiss="alert">&times;</button>
+             <strong><i class="icon-pushpin icon-1x"></i> Warning!</strong>
+             <p>This site does not support IE 8, please choose a higher version for compatibility.</p>
+          </div>
+       <![endif]-->
+
+
+       <!-- Responsive Grid for managing contents of Page -->
+       <div class="container-fluid">
+         <div class="row-fluid">
+           <div class="offset1 span10">
+             {% block content %}
+             {% endblock %}
+           </div>
+         </div>
+       </div>
+
+       <div id="push"></div>
+     </div>
+
+     <!-- Footer hidden for Mobiles -->
+     <div class="hidden-phone">
+       <div id="footer">
+         <div class="container-fluid">
+           <div class="row-fluid">
+             {% block footer %}{% endblock %}
+           </div>
+         </div>
+       </div>
+     </div>
+
+    <script src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/modernizr.mq.js"></script>
+    <script type="text/javascript" src="js/jquery.joyride-2.1.js"></script>
+    <script type="text/javascript">window.jQuery || document.write('<script src="js/jquery.js"><\/script>')</script>
+    <script type="text/javascript" src="js/jquery.event.move.js"></script>
+    <script type="text/javascript" src="js/jquery.twentytwenty.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/custom_scripts.js"></script>
+  </body>
+</html>
